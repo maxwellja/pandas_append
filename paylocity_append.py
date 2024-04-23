@@ -1,27 +1,20 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[3]:
-
-
+#Import libraries
 import pandas as pd
 import openpyxl as op
 import re
 
 
-# In[4]:
-
-
+#Define Excel
 file_path = 'your_path_to.xlsx'
 data = pd.ExcelFile(file_path)
 all_sheets = data.sheet_names
 
-#Retrieves 'template' table in the excel file, used to test column headers.
+#Retrieves 'template' table from appropriate sheet in excel file, used to test column headers.
 xls = op.load_workbook(file_path)
 template_name = 'TEMPLATE'
 tbl_r = xls[template_name].tables.items()[0][1]
 
-#Disregards sheets outside of naming convention & stores them for exception handling later.
+#Disregard sheets outside of naming convention & stores them for exception handling later.
 wk_sheets = []
 ignored = []
 excluded = [template_name, "Combined"]
